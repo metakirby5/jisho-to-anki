@@ -2,7 +2,7 @@
 <h1>Jisho to Anki</h1>
 <input type="text" id="query" class="u-full-width">
 <div class="center">
-  <div id="spinner" class="spinner" hidden></div>
+  <div id="spinner" class="spinner hidden"></div>
 </div>
 <div id="response-display" hidden>
   <a id="add" class="button button-primary u-full-width">Add to Anki</a>
@@ -11,15 +11,8 @@
   <h4 id="reading"></h4>
   <section id="meaning"></section>
 </div>
-<script>
-const debounce = (func, timeout = 300) => {
-  let timer
-  return (...args) => {
-    clearTimeout(timer)
-    timer = setTimeout(() => { func.apply(this, args); }, timeout)
-  }
-}
 
+<script>
 const query = document.getElementById('query')
 const spinner = document.getElementById('spinner')
 const responseDisplay = document.getElementById('response-display')
@@ -43,11 +36,19 @@ const search = async (term) => {
   return true
 }
 
+const showElement = (element, show) => {
+  if (show) {
+    element.classList.remove('hidden')
+  } else {
+    element.classList.add('hidden')
+  }
+}
+
 query.addEventListener('change', async (event) => {
-  spinner.hidden = false
+  showElement(spinner, true)
   responseDisplay.hidden = true
   const hasResult = await search(query.value)
-  spinner.hidden = true
+  showElement(spinner, false)
   responseDisplay.hidden = !hasResult
 })
 </script>
