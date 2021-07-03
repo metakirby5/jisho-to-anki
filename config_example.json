@@ -1,0 +1,12 @@
+{
+  "profile": "User",
+  "note": "Japanese",
+  "deck": "Japanese::Vocabulary",
+  "tags": "jisho-to-anki",
+  "fields": {
+    "lookup": "Expression",
+    "meaning": "Meaning",
+    "reading": "Reading",
+    "word": "Expression"
+  }
+}
