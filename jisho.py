@@ -45,9 +45,9 @@ def create_note(data: Dict[str, Any], config: Config) -> Dict[str, str]:
     }
 
     try_set_key_val(note, 'tags', config.tags)
-    try_set_field(note, config.reading_field, reading)
-    try_set_field(note, config.meaning_field, get_meaning(senses))
-    try_set_field(note, config.word_field, word)
+    try_set_key_val(note, config.reading_field, reading)
+    try_set_key_val(note, config.meaning_field, get_meaning(senses))
+    try_set_key_val(note, config.word_field, word)
     return note
 
 
@@ -92,7 +92,3 @@ def try_set_key_val(note: Dict[str, str], key: str, value: Any):
         note[key] = value
     except KeyError:
         pass
-
-
-def try_set_field(note: Dict[str, str], key: str, value: Any):
-    try_set_key_val(note, 'fld' + key, value)

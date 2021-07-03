@@ -17,7 +17,10 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 DEFAULT_HOST = '0.0.0.0'
 DEFAULT_PORT = '8080'
 DEFAULT_CONFIG_FILE = os.path.join(HERE, 'config.json')
+
+STATIC_ROOT = os.path.join(HERE, 'static')
 ANKI_URL = 'anki://x-callback-url/addnote?'
+bottle.TEMPLATE_PATH = [os.path.join(HERE, 'views')]
 
 
 def fail_with(msg):
@@ -69,15 +72,26 @@ def main():
     except FileNotFoundError:
         fail_with(f'Config file "{args.config_file}" not found.')
 
-    @bottle.route('/search/<query>')
+    @bottle.get(f'/static/<filepath:path>')
+    def static_route(filepath):
+        return bottle.static_file(filepath, root=STATIC_ROOT)
+
+    @bottle.get('/')
+    @bottle.view('index')
+    def index_route():
+        return {'config': config}
+
+    @bottle.get('/search/<query>')
     def search(query: str):
-        data = jisho.fetch(query)
+        try:
+            data = jisho.fetch(query)
+        except jisho.JishoError:
+            return {}
+
         note = jisho.create_note(data, config)
         url = ANKI_URL + urlencode(note, quote_via=quote)
-        print(url)
-        bottle.redirect(url)
+        return {'url': url, 'note': note}
 
-    # Start the server.
     bottle.run(host=args.host, port=args.port)
 
 

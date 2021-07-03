@@ -1,0 +1,28 @@
+.container {
+  margin-top: 2rem;
+}
+
+.disabled {
+  opacity: 50%;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  opacity: 50%;
+  border: 0.5rem solid grey;
+  border-top: 0.5rem solid black;
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

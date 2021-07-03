@@ -14,7 +14,11 @@ class Config:
         self.tags: str = config['tags']
 
         fields = config['fields']
-        self.lookup_field: str = fields['lookup']
-        self.meaning_field: str = fields['meaning']
-        self.reading_field: str = fields['reading']
-        self.word_field: str = fields['word']
+
+        def get_field(name: str):
+            return 'fld' + fields[name]
+
+        self.lookup_field: str = get_field('lookup')
+        self.meaning_field: str = get_field('meaning')
+        self.reading_field: str = get_field('reading')
+        self.word_field: str = get_field('word')
