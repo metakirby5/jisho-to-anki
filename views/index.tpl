@@ -1,6 +1,6 @@
 % rebase('base.tpl', title='Jisho to Anki')
 <h1>Jisho to Anki</h1>
-<input type="text" id="query" class="u-full-width">
+<input type="text" id="query" class="u-full-width" placeholder="English, Japanese, Romaji, words or text">
 <div class="center">
   <div id="spinner" class="spinner hidden"></div>
 </div>
