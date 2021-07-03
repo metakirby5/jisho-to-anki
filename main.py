@@ -20,6 +20,7 @@ DEFAULT_CONFIG_FILE = os.path.join(HERE, 'config.json')
 
 STATIC_ROOT = os.path.join(HERE, 'static')
 ANKI_URL = 'anki://x-callback-url/addnote?'
+CHROME_URL = 'googlechrome://'
 bottle.TEMPLATE_PATH = [os.path.join(HERE, 'views')]
 
 
@@ -89,6 +90,7 @@ def main():
             return {}
 
         note = jisho.create_note(data, config)
+        note['x-success'] = CHROME_URL
         url = ANKI_URL + urlencode(note, quote_via=quote)
         return {'url': url, 'note': note}
 
