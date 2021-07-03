@@ -1,2 +1,2 @@
 # jisho-to-anki
-A simple web server which redirects to generate an Anki entry.
+A simple web server which redirects to generate an Anki entry on iOS.

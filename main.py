@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+"""
+A simple web server which redirects to generate an Anki entry on iOS.
+"""
+
 import argparse
 import os
 import sys
@@ -66,7 +70,6 @@ def parse_args():
 def main():
     args = parse_args()
 
-    # Attempt to open the config file.
     try:
         with open(args.config_file) as f:
             config = Config(f)
