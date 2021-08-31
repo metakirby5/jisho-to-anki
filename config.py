@@ -18,7 +18,6 @@ class Config:
         def get_field(name: str):
             return 'fld' + fields[name]
 
-        self.lookup_field: str = get_field('lookup')
         self.meaning_field: str = get_field('meaning')
         self.reading_field: str = get_field('reading')
         self.word_field: str = get_field('word')
