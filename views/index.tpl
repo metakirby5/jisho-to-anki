@@ -22,6 +22,10 @@ const reading = document.getElementById('reading')
 const meaning = document.getElementById('meaning')
 
 const search = async (term) => {
+  if (!term) {
+    return false;
+  }
+
   const response = await fetch('/search/' + encodeURIComponent(term))
   const result = await response.json()
   if (!result.note) {
